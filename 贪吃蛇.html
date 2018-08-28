@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="贪吃蛇.css">
+  <style>
+    *{
+      box-sizing: border-box;
+      margin:0;
+      padding: 0;
+    }
+    html,body{
+      height: 100%;
+      width: 100%;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    #map{
+      position: absolute;
+      margin:auto;
+      width: 670px;
+      height: 670px;
+      border: 5px solid black;
+      top:0;
+      bottom: 0;
+      left:0;
+      right:0;
+      visibility:hidden;
+    }
+    #Snak_head{
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      position: absolute;
+      box-shadow: 0 0 15px 1px black;
+    }
+    .food_span{
+      position: absolute;
+      display: block;
+      background-color: blue;
+      width: 20px;
+      height: 20px;
+    }
+    .Snak_body{
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      box-shadow: 0 0 15px 1px black;
+    }
+    #Start_game{
+      position: absolute;
+      width: 100%;
+      height: 33%;
+      top:0;
+      bottom:0;
+      margin:auto;
+      display: flex;
+      visibility: visible;
+      align-items:center;
+      justify-content:space-around;
+      border:1px solid black;
+      font-size: 5.5rem;
+      background-color: black;
+      color: white;
+      z-index: 9999
+    }
+    #Start_game span{
+      position: relative; 
+    }
+    select {
+      appearance:none;
+      -moz-appearance:none;
+      -webkit-appearance:none;
+      width:60px;
+      height: 30px;
+      margin-left:18px;
+      outline: none;
+      padding-left:15px;
+      border-radius: 5px;
+    }
+    #Start_game span:after {
+      position: absolute;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: bottom;
+      animation: loading 2s -2s steps(3) infinite;
+      content: attr(data-text);
+    }
+    @keyframes loading {
+      0%{
+        width: 0rem;
+      }
+      33%{
+        width: 5rem;
+      }
+      100%{
+        width: 10rem;
+      }
+    }    
+  </style>
+  <title>贪吃蛇</title>
+</head>
+<body>
+  <div id="Start_game"><span data-text="" >开始游戏</span></div>
+  <div id="score"><span>当前得分:</span> <strong>游戏未开始</strong></div>
+  <div id="dir"><span>指令状态:</span> <strong>游戏未开始</strong></div>
+  <div id="diff"><span>游戏难度</span> 
+    <select>
+      <option value ="500">简单</option>
+      <option value ="300">普通</option>
+      <option value="100">困难</option>
+      <option value="50">地狱</option>
+    </select>
+  </div>
+  <div id="map">
+    <div id="Snak_head"></div>
+  </div>
+  <script type="text/javascript" src="贪吃蛇.js"></script>
+</body>
+</html>
