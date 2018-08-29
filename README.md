@@ -1,6 +1,6 @@
 # 贪吃蛇实现（难度可调节） 
 在实现过程中需要考虑的一些问题以及解决方式以及游戏的可扩展性  
-[效果展示](https://htmlpreview.github.io/?https://github.com/L-WJ1995/Snake/blob/master/%E8%B4%AA%E5%90%83%E8%9B%87.html)  
+[效果展示,空格键开始](https://htmlpreview.github.io/?https://github.com/L-WJ1995/Snake/blob/master/%E8%B4%AA%E5%90%83%E8%9B%87.html)  
 1. Snake的移动方式  
    移动方向的判定,在移动过程中,只响应移动方向的left和right,需要注意的是,Snake的长度为1时,此时可以响应所有方向。
    * 移动过程中需要注意一个问题,按键的响应间隔,如果不加以限制,则会出现极短时间相反方向按键生效的问题。本例通过设置一个全局变量,执行完一次移动该变量值为ture,执行过程中为false,通过这个值的真假来决定是否响应按键。  
