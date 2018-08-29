@@ -3,7 +3,8 @@ let game_status         //进程ID
 let status = "off"      //开始/暂停
 let game_over_val = 1   //游戏状态 1：进行中  0：ganmeover
 let key_status = true   //按键状态
-addEventListener("keydown",(e)=>{
+
+addEventListener("keydown",(e)=>{  //监听案件事件
   if(!key_status){
     return
   } 
@@ -44,6 +45,7 @@ addEventListener("keydown",(e)=>{
   }
 })
 
+//执行游戏状态
 function game_mode() {
   if (status === "off") {
     Start_game.style.visibility = "hidden"
