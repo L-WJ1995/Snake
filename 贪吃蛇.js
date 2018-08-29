@@ -1,46 +1,46 @@
 
 let game_status         //进程ID
 let status = "off"      //开始/暂停
-let game_over_val = 1   //游戏状态 1：进行中  0：ganmeover
+let game_over_val = 0   //游戏状态 1：进行中  0：ganmeover
 let key_status = true   //按键状态
 
-addEventListener("keydown",(e)=>{  //监听案件事件
+addEventListener("keydown",(e)=>{  //监听按键事件
   if(!key_status){
     return
   } 
-  if (e.keyCode == 37) {
+  if (e.keyCode == 37  && game_over_val === 1) {
     if (coordinate_X.length === 1) {
       direction = "after"
     } else {  
       direction = direction === "before" ? "before" : "after"
     }
-    if (status === "on") dir.children[1].textContent = direction === "before" ? "\u2192" : "\u2190"
     key_status = false
-  } else if (e.keyCode == 38) {
+    if (status === "on" ) dir.children[1].textContent = direction === "before" ? "\u2192" : "\u2190"
+  } else if (e.keyCode == 38  && game_over_val === 1) {
       if (coordinate_X.length === 1) {
         direction = "up"
       } else {  
         direction = direction === "down" ? "down" : "up"
       }
-      if (status === "on") dir.children[1].textContent = direction === "down" ? "\u2193" : "\u2191"
       key_status = false
-  } else if (e.keyCode == 39) {
+      if (status === "on") dir.children[1].textContent = direction === "down" ? "\u2193" : "\u2191"
+  } else if (e.keyCode == 39  && game_over_val === 1) {
       if (coordinate_X.length === 1) {
         direction = "before"
       } else {  
         direction = direction === "after" ? "after" : "before"
       }
-      if (status === "on") dir.children[1].textContent = direction === "after" ? "\u2190" : "\u2192"
       key_status = false
-  } else if (e.keyCode == 40) {
+      if (status === "on") dir.children[1].textContent = direction === "after" ? "\u2190" : "\u2192"
+  } else if (e.keyCode == 40  && game_over_val === 1) {
       if (coordinate_X.length === 1) {
         direction = "down"
       } else {  
         direction = direction === "up" ? "up" : "down"
       }
-      if (status === "on") dir.children[1].textContent = direction === "up" ? "\u2191" : "\u2193"
       key_status = false
-  } else if (e.keyCode == 32) {
+      if (status === "on") dir.children[1].textContent = direction === "up" ? "\u2191" : "\u2193"
+  } else if (e.keyCode === 32) {
       game_mode()  //执行游戏状态
   }
 })
@@ -51,9 +51,9 @@ function game_mode() {
     Start_game.style.visibility = "hidden"
     map.style.visibility = "visible"
     status = "on"
-    if (game_over_val === 1) {
+    if (game_over_val === 0) {
       init()  //初始化
-      game_over_val = 0
+      game_over_val = 1
     }                        
     if (!foodNode) append_food()                     //投放食物
     game_status = setInterval(move_direction, time)  //开始游戏
@@ -135,7 +135,6 @@ function move_direction(){  //移动以及移动过程中的事件判断
   key_status = true
   snake()
   if (!game_over_judge()) {
-    key_status = true
     game_over()
   }
 }
@@ -192,9 +191,9 @@ function game_over_judge() {    //游戏结束判断
 function game_over(){   //游戏结束
   Start_game.style.visibility = "visible"
   map.style.visibility = "hidden"
-  key_status = true
   status = "off"
-  game_over_val = 1
+  key_status = true
+  game_over_val = 0
   Start_game.children[0].textContent = "Game over ！！！"
   Start_game.children[0].dataset.text = ""
   clearInterval(game_status)                 
