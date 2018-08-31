@@ -5,6 +5,9 @@ let game_over_val = 0   //游戏状态 1：进行中  0：ganmeover
 let key_status = true   //按键状态
 
 addEventListener("keydown",(e)=>{  //监听按键事件
+  if (e.keyCode === 32) {
+      game_mode()  //执行游戏状态
+  }
   if(!key_status){
     return
   } 
@@ -40,8 +43,6 @@ addEventListener("keydown",(e)=>{  //监听按键事件
       }
       key_status = false
       if (status === "on") dir.children[1].textContent = direction === "up" ? "\u2191" : "\u2193"
-  } else if (e.keyCode === 32) {
-      game_mode()  //执行游戏状态
   }
 })
 
